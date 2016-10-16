@@ -1,0 +1,116 @@
+/*===== HEAD =====*/
+.b-head {
+    display: block;
+    height: 50px;
+
+    &-box {
+        display: block;
+        width: 100%;
+        padding: 11px 20px;
+        box-sizing: border-box;
+        background-color: $color-light-blue;
+        text-align: justify;
+        text-justify: newspaper;
+        box-shadow: rgba(0,0,0,0.3) 0 1px 4px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+
+        @media screen and (max-width: $screen-sm) {
+            text-align: left;
+        }
+    }
+
+    &__wrap {
+        display: block;
+        font-size: 0;
+        line-height: 0;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            vertical-align: top;
+            width: 100%;
+
+            @media screen and (max-width: $screen-xs) {
+                display: none;
+            }
+        }
+    }
+    &__col,
+    &__cell {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: normal;
+        white-space: nowrap;
+        @include no-select;
+    }
+    &__col--align-left {
+        text-align: left;
+    }
+    &__col--align-right {
+        text-align: right;
+    }
+    &__cell {
+        margin-left: 10px;
+        margin-right: 10px;
+        white-space: normal;
+    }
+    &__title {
+        color: #fff;
+        font-size: 24px;
+        line-height: normal;
+        text-decoration: none;
+
+        &:visited {
+            color: #fff;
+        }
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+    &__button {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 28px;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+        @include transition(0.2s ease);
+
+        &:hover,
+        &.active {
+            background-color: #5d6dc5;
+            box-shadow: 0 0 0 5px #5d6dc5;
+        }
+        &:focus,
+        &:active {
+            outline: none;
+        }
+    }
+    &__search {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 200px;
+
+        &__input {
+            width: 100%;
+            padding: 4px 10px 5px;
+            background-color: #fff;
+            border: none;
+            font-size: 16px;
+            line-height: 20px;
+            @include transition(transform 0.2s ease);
+
+            &:focus {
+                outline: none;
+                @include scale(1.1);
+            }
+        }
+
+    }
+}
+/*===== HEAD - END =====*/

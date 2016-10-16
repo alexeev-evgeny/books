@@ -1,0 +1,158 @@
+.b-wrap
+  form.b-view {
+    name="newBookForm"
+    ng-submit="add()"
+  }
+    .b-view__head
+      .b-view__head__item
+        a.b-view__button.mdi.mdi-keyboard-backspace {
+          ng-href="/"
+        }
+      .b-view__head__item
+        .b-view__button.b-view__icon-star.mdi {
+          ng-class="{
+            'mdi-star-outline': !newBook.favorite,
+            'mdi-star': newBook.favorite
+          }"
+          ng-click="newBook.favorite = !newBook.favorite"
+        }
+      .b-view__head__item
+        button.b-view__button.b-view__button--green.mdi.mdi-content-save {
+          type="submit"
+        }
+
+    .b-view__body
+      .b-view__col-1-4
+        img.b-view__avatar {
+          ng-src="{{newBook.imageUrl || 'img/default.png'}}"
+        } 
+
+      .b-view__col-3-4
+        .b-view__row
+          .b-view__title
+            | Image:
+          .b-view__data.b-view__data--width-default
+            .b-view__data__col
+              button.b-upload [
+                type="file" 
+                accept="image/jpeg,image/jpg,image/png"
+                ng-class="{'b-upload--disabled': fileUploadInProgress}"
+                ng-disabled="fileUploadInProgress"
+                ngf-select="uploadImage($file, $invalidFiles)"
+                ngf-pattern="'image/jpeg,image/jpg,image/png'"
+                ngf-max-size="1MB"
+                ngf-multiple="false" 
+                ngf-allow-dir="false"
+              ] 
+                | Select image
+            .b-view__data__col ng-show="fileUploadInProgress"
+              .b-upload-progress
+  
+        .b-view__row
+          .b-view__title.b-view__title--with-star
+            | Name:
+          .b-view__data
+            input.b-input {
+              type="text"
+              name="title"
+              ng-model="newBook.title"
+              ng-maxlength="30"
+              required
+              ng-class="{'b-input--error': checkField('title')}"
+            }
+
+        .b-view__row
+          .b-view__title.b-view__title--with-star
+            | Author(s):
+          .b-view__data ng-repeat="author in newBook.authors"
+            .b-view__data__col
+              input.b-input {
+                type="text"
+                name="{{'name' + $index}}"
+                placeholder="Name"
+                ng-model="author.name"
+                ng-maxlength="20"
+                required
+                ng-class="{'b-input--error': checkField('name' + $index)}"
+              }
+            .b-view__data__col
+              input.b-input {
+                type="text"
+                name="{{'surname' + $index}}"
+                placeholder="Surname"
+                ng-model="author.surname"
+                ng-maxlength="20"
+                required
+                ng-class="{'b-input--error': checkField('surname' + $index)}"
+              }
+            .b-view__data__col.b-view__data__col--small
+              .b-view__icon-add.mdi.mdi-plus {
+                ng-hide="$index+1 < newBook.authors.length "
+                ng-click="addAuthor()"
+                tooltip
+                tooltip-value="Add author"
+              }
+
+        .b-view__row
+          .b-view__title
+            | Count of pages:
+          .b-view__data
+            input.b-input {
+              type="number"
+              name="countOfPages"
+              min="0"
+              max="10000"
+              ng-model="newBook.pagesCount"
+              ng-class="{'b-input--error': checkField('countOfPages')}"
+            }
+
+        .b-view__row
+          .b-view__title
+            | Publisher:
+          .b-view__data
+            input.b-input {
+              type="text"
+              name="publisher"
+              ng-maxlength="30"
+              ng-model="newBook.publishingHome"
+              ng-class="{'b-input--error': checkField('publisher')}"
+            }
+
+        .b-view__row
+          .b-view__title
+            | Year of publication:
+          .b-view__data
+            input.b-input {
+              type="number"
+              name="publicationYear"
+              min="1080"
+              max="2016"
+              ng-model="newBook.publicationYear"
+              ng-class="{'b-input--error': checkField('publicationYear')}"
+            }
+
+        .b-view__row
+          .b-view__title
+            | Date of printing:
+          .b-view__data
+            input.b-input {
+              type="date"
+              name="printingDate"
+              ng-model="newBook.printingDate"
+              ng-class="{'b-input--error': checkField('printingDate')}"
+              min="1800-01-01"
+              placeholder="yyyy-MM-dd"
+            }
+
+        .b-view__row
+          .b-view__title
+            | ISBN:
+          .b-view__data
+            input.b-input {
+              type="text"
+              name="isbn"
+              ng-model="newBook.isbn"
+              ng-class="{'b-input--error': checkField('isbn')}"
+              ng-pattern="isbnRegex"
+              placeholder="978-3-16-148410-0"
+            }

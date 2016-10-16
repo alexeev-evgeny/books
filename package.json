@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.1",
+    "gulp-angular-order": "^0.1.5",
+    "gulp-changed": "^1.3.0",
+    "gulp-coffee": "^2.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-slim": "^0.3.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-template": "^4.0.0",
+    "gulp-webserver": "^0.9.1",
+    "mdi": "^1.6.50",
+    "moment": "^2.15.1",
+    "ng-file-upload": "^12.2.12",
+    "normalize-css": "^2.3.1"
+  }
+}

@@ -1,0 +1,179 @@
+// ===== COLORS =====
+$background-grey: #e5e5e5;
+$color-light-blue: #3F51B5;
+$color-orange: #FBC02D;
+$color-light-grey: #e5e5e5;
+$color-green: #65c765;
+$color-red: #F44336;
+$color-text: #999;
+$color-text-dark: #333;
+$list-hightlight-color: #3F51B5;
+
+// ===== SCREEN
+$screen-sm: 640px;
+$screen-xs: 480px;
+
+body {
+    height: 100%;
+    background-color: $background-grey;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.b-load {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    &__title {
+        display: block;
+        text-align: center;
+        font-size: 32px;
+        line-height: normal;
+        color: #999;
+    }
+}
+.b-app {
+    display: block;
+    position: relative;
+    padding: 30px 20px 0;
+    background-color: $background-grey;
+}
+.b-wrap {
+    max-width: 960px;
+    min-width: 320px;
+    margin: 0 auto;
+    position: relative;
+}
+.b-indent-top-m {
+    margin-top: 30px;
+}
+.b-indent-top-s {
+    margin-top: 20px;
+}
+.b-indent-top-xs {
+    margin-top: 10px;
+}
+.b-scroll-off {
+    overflow: hidden !important;
+}
+.b-main-slider {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    @include transition(transform ease 0.5s);
+    @include transform(translateZ(0));
+
+    &__page {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        height: 100%;
+        font-size: 16px;
+        line-height: normal;
+        white-space: normal;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    &.shifted-to-left {
+        @include transform(translateX(-100vw));
+    }
+}
+
+// ===== INPUT =====
+.b-input {
+    width: 100%;
+    padding: 4px 0 5px;
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid $color-light-grey;
+    font-size: 16px;
+    line-height: 20px;
+    @include transition(border ease 0.4s);
+
+    &:focus {
+        outline: none;
+        border-bottom: 1px solid $color-green;
+    }
+    &--error {
+        border-bottom: 1px solid $color-red;
+    }
+}
+
+// ===== BUTTON UPLOAD =====
+.b-upload {
+    display: block;
+    padding: 0 15px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 30px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    background-color: $color-green;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+                0 3px 1px -2px rgba(0,0,0,0.12),
+                0 1px 5px 0 rgba(0,0,0,0.2);
+    @include transition(background-color ease 0.5s);
+
+    &:focus {
+        outline: none;
+    }
+    &:active {
+        background-color: $color-light-grey;
+    }
+    &--disabled {
+        background-color: #fff;
+        color: $color-text-dark;    
+    }
+}
+.b-upload-progress {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url('../img/loading.gif');
+}
+
+// ===== PRELOADER =====
+.b-preloader {
+    display: block;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url('../img/loading.gif');
+    z-index: 10;
+}
+
+// ===== MEDIA TOOLS =====
+.hidden-sm {
+    @media screen and (max-width: $screen-sm) {
+        display: none !important;
+    }
+}
+.hidden-xs {
+    @media screen and (max-width: $screen-xs) {
+        display: none !important;
+    }
+}

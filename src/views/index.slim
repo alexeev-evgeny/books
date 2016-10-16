@@ -1,0 +1,32 @@
+html ng-app="app"
+  head
+    title 
+      | Books
+    meta {
+      charset="utf-8"
+    }
+    meta {
+      name="viewport" 
+      content="width=device-width, height=device-height"
+    }
+    link {
+      rel="shortcut icon" 
+      href="img/favicon.png"
+    } 
+    base href="/"
+
+    / inject:css
+    / endinject
+
+    / inject:js
+    / endinject
+
+  body
+    div ng-controller="parentCtrl"
+      .b-head {
+        ng-include="'views/layout/head.html'"
+      }
+      
+      .b-app {
+        ng-view=""
+      }

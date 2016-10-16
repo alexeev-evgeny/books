@@ -1,0 +1,43 @@
+.b-head-box
+  .b-head__wrap.b-wrap
+    .b-head__col.b__col--align-left
+      a.b-head__title.hidden-sm {
+      	ng-href="/"
+      }
+        | Books    
+
+    .b-head__col.b__col--align-right {
+      ng-if="!openedContact"
+    }
+      .b-head__cell.b-head__search.hidden-xs
+        input.b-head__search__input {
+          type="text"
+          placeholder="Filter"
+          ng-model="$parent.$parent.searchText"
+        }
+      .b-head__cell.b-head__button.mdi.mdi-sort-alphabetical {
+        ng-click="orderByField('title')"
+        ng-class="{'active': orderField == 'title'}"
+        tooltip
+        tooltip-value="Sort by name"
+      }
+      .b-head__cell.b-head__button.mdi.mdi-sort-numeric {
+        ng-click="orderByField('publicationYear')"
+        ng-class="{'active': orderField == 'publicationYear'}"
+        tooltip
+        tooltip-value="Sort by publication year"
+      }
+      .b-head__cell.b-head__button.mdi {
+          ng-class="{
+            'mdi-star-outline': !showOnlyFavorites,
+            'mdi-star': showOnlyFavorites
+          }"
+        ng-click="toggleFavoritesVisible()"
+        tooltip
+        tooltip-value="Only favorites"
+      }
+      a.b-head__cell.b-head__button.mdi.mdi-plus {
+        tooltip
+        tooltip-value="Create"
+        ng-href="/new"
+      }

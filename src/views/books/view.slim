@@ -1,0 +1,91 @@
+.b-preloader {
+  ng-if="!openedBook" 
+}
+.b-wrap {
+  ng-if="openedBook" 
+}
+  .b-view
+    .b-view__head
+      .b-view__head__item
+        a.b-view__button.mdi.mdi-keyboard-backspace {
+          ng-href="/"
+        }
+      .b-view__head__item
+        a.b-view__button.b-view__icon-edit.mdi.mdi-border-color {
+          ng-href="edit/{{::openedBook._id}}"
+        }
+
+      .b-view__head__item
+        .b-view__head__star.b-view__icon-star.mdi {
+          ng-class="{
+            'mdi-star-outline': !openedBook.favorite,
+            'mdi-star': openedBook.favorite
+          }"
+        }
+
+    .b-view__body
+      .b-view__col-1-4
+        img.b-view__avatar {
+          ng-src="{{::openedBook.imageUrl || 'img/default.png'}}"
+        }
+
+      .b-view__col-3-4
+        .b-view__row
+          .b-view__title
+            | Name:
+          .b-view__data
+            | {{::openedBook.title}}
+
+        .b-view__row
+          .b-view__title {
+            ng-show="openedBook.authors.length < 2"
+          }
+            | Author:
+          .b-view__title {
+            ng-show="openedBook.authors.length > 1"
+          }
+            | Author(s):
+          .b-view__data {
+            ng-repeat="author in openedBook.authors"
+          } 
+            | {{::author.name}}
+            | &nbsp;
+            | {{::author.surname}}
+
+        .b-view__row
+          .b-view__title
+            | Count of pages:
+          .b-view__data
+            | {{::openedBook.pagesCount}}
+
+        .b-view__row {
+          ng-if="openedBook.publishingHome"
+        }
+          .b-view__title
+            | Publisher:
+          .b-view__data
+            | {{::openedBook.publishingHome}}
+
+        .b-view__row {
+          ng-if="openedBook.publicationYear"
+        }
+          .b-view__title
+            | Year of publication:
+          .b-view__data
+            | {{::openedBook.publicationYear}}
+
+        .b-view__row {
+          ng-if="openedBook.printingDate"
+        }
+          .b-view__title
+            | Date of printing:
+          .b-view__data
+            | {{::openedBook.printingDate}}
+
+        .b-view__row {
+          ng-if="openedBook.openedBook.website"
+        }
+          .b-view__title
+            | ISBN:
+          .b-view__data
+            | {{::openedBook.isbn}}

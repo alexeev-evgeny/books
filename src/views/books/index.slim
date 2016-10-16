@@ -1,0 +1,54 @@
+.b-preloader {
+  ng-if="!books.length" 
+}
+.b-wrap
+  .b-grid {
+    ng-if="books.length > 0"
+  } 
+    a.b-grid__item  {
+      ng-repeat="item in books | orderBy: orderField | filter: $parent.searchText"
+      ng-href="/view/{{item._id}}"
+      ng-if="checkFavoriteState(item.favorite)"
+    } 
+      .b-preview
+        .b-preview__col.hidden-xs
+          .b-preview__image {
+            ng-style="{'background-image': 'url({{::item.imageUrl || 'img/default.png'}})'}"
+          }
+        .b-preview__col
+          .b-preview__row
+            .b-preview__title
+              | Name
+            .b-preview__text.b-preview__text-crop
+              | {{::item.title}}
+
+          .b-preview__row
+            .b-preview__title ng-if="item.authors.length > 1"
+              | Author(s)
+            .b-preview__title ng-if="item.authors.length == 1"
+              | Author
+            .b-preview__text
+              .b-preview__text-crop ng-repeat="author in item.authors"
+                | {{::author.name}}
+                | &nbsp;
+                | {{::author.surname}}
+
+          .b-preview__row
+            .b-preview__title
+              | Count of pages
+            .b-preview__text
+              | {{::item.pagesCount}}
+
+        .b-preview__col
+          .b-preview__row
+            .b-preview__title
+              | Publisher
+            .b-preview__text
+              | {{::item.publishingHome}}
+
+          .b-preview__row
+            .b-preview__title
+              | Year of printing
+            .b-preview__text
+              | {{::item.printingYear}}
+
